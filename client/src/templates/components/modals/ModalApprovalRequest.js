@@ -14,22 +14,11 @@ import {
     Box,
 } from "@mui/material";
 
-
-/**
- * Create the user creation modal
- *
- * @param {*} open Indicates if the modal is open
- * @param {*} setOpen Open status setter function.
- * @param {*} create Indicates if the modal must create a new user or edit it
- * @param {*} data User data in case the modal i used to edit
- * @returns A dialog component with the form to create a user
- */
 const ModalApprovalRequest = ({
     open,
     setOpen,
     data,
 }) => {
-    //form fields states
     const [comment, setComment] = useState(data.REQUEST_COMMENT);
     const hrApprover = data.HR_APPROVER;
     const pmApprover = data.PM_APPROVER;
@@ -163,14 +152,6 @@ const ModalApprovalRequest = ({
     );
 };
 
-/**
- * Create the user deletion modal
- *
- * @param {*} open Indicates if the modal is open
- * @param {*} setOpen Open status setter function.
- * @param {*} data Data of the user to delete
- * @returns A dialog component with the form to delete a user
- */
 const ModalRequestActions = ({ open, setOpen, data, approve=true }) => {
     const process = approve ? "Approved" : "Rejected";
     const action = approve ? "approve" : "reject";

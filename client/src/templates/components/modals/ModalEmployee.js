@@ -15,25 +15,10 @@ import {
     MenuItem,
 } from "@mui/material";
 
-/**
- * Create an employee data
- *
- * @param {*} Fullname employee's fullname
- * @returns An object, contains the data of the employee
- */
 const createProjectData = (Type, Id) => {
     return { Type, Id };
 };
 
-/**
- * Create the user creation modal
- *
- * @param {*} open Indicates if the modal is open
- * @param {*} setOpen Open status setter function.
- * @param {*} create Indicates if the modal must create a new user or edit it
- * @param {*} data Employee data in case the modal i used to edit
- * @returns A dialog component with the form to create a user
- */
 const ModalEmployeeCreate = ({
     open,
     setOpen,
@@ -41,7 +26,6 @@ const ModalEmployeeCreate = ({
     data,
     editing=false,
 }) => {
-    //form fields states
     const [fullname, setFullname] = useState(create ? "" : data.FULLNAME);
     const [subdivision, setSubdivision] = useState(create ? "" : data.SUBDIVISION);
     const [position, setPosition] = useState(create ? "" : data.POSITION);
@@ -281,19 +265,10 @@ const ModalEmployeeCreate = ({
     );
 };
 
-/**
- * Create the user deletion modal
- *
- * @param {*} open Indicates if the modal is open
- * @param {*} setOpen Open status setter function.
- * @param {*} data Data of the user to delete
- * @returns A dialog component with the form to delete a user
- */
 const ModalAssignEmployee = ({ open, setOpen, data }) => {
     const [projects, setProjects] = useState([]);
     const [project, setProject] = useState(0);
 
-    // Request from all system projects
     const getProjects = () => {
         Axios.get(`http://localhost:3001/Lists/Project`).then((response) => {
             const allProjects = response.data;
@@ -306,8 +281,7 @@ const ModalAssignEmployee = ({ open, setOpen, data }) => {
             setProjects(projectList);
         });
     };
-
-    // Load all the projects
+    
     useEffect(() => {
         getProjects();
     }, []);

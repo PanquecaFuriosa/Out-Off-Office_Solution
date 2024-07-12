@@ -18,19 +18,6 @@ from "../../templates/components/modals/ModalEmployee";
 import TableFilter from "../../templates/components/table/TableFilter";
 import PageNavbar from "../../templates/components/common/PageNavbar";
 
-
-/**
- * Create an employee data
- *
- * @param {*} Fullname employee's fullname
- * @param {*} Subdivision employee's subdivision
- * @param {*} Position employee's position
- * @param {*} Status_emp employee's status
- * @param {*} People_partner employee's people partner
- * @param {*} Out_of_office_balance employee's out of office balance
- * @param {*} Actions available actions on the employee
- * @returns An object, contains the data of the employee
- */
 const createData = (Fullname, Subdivision, Position, Status_emp, HR_partner, PM_partner, Out_of_office_balance, Actions) => {
     return { 
         Fullname, 
@@ -67,32 +54,17 @@ const PMEmployeePanel = ({ user }) => {
     const [page, setPage] = useState(0);
     const [pageSize, setPageSize] = useState(5);
 
-    /**
-     * Employee modify management
-     *
-     * @param {*} employee employee to edit
-     */
-        const viewEmployee = (employee) => {
-            setDataModal(employee);
-            setSeeing(true);
-        };
 
-    /**
-     * Employee modify management
-     *
-     * @param {*} employee employee to edit
-     */
+    const viewEmployee = (employee) => {
+        setDataModal(employee);
+        setSeeing(true);
+    };
+
     const assignEmployee = (employee) => {
         setDataModal(employee);
         setEditing(true);
     };
 
-    /**
-     * Create the component that contains the actions on the users
-     *
-     * @param {*} user user to whom the actions will be performed
-     * @returns A component that contains the actions on the users
-     */
     const createActionsComponent = ({ employee }) => {
         return (
             <Grid container columns={2} spacing={1.5}>
@@ -125,7 +97,6 @@ const PMEmployeePanel = ({ user }) => {
         );
     };
 
-    // Request from all system employees
     const getEmployees = (page, pageSize) => {
         Axios.get(`http://localhost:3001/Lists/Employee/Partner?page=${page}&pageSize=${pageSize}&partner=${user}`).then((response) => {
             const allEmployees = response.data;
@@ -147,7 +118,6 @@ const PMEmployeePanel = ({ user }) => {
         });
     };
 
-    // Load all the users
     useEffect(() => {
         getEmployees(page, pageSize);
     }, [page, pageSize]);

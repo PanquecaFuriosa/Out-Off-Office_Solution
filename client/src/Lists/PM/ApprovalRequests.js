@@ -18,17 +18,6 @@ import  {
 import TableFilter from "../../templates/components/table/TableFilter";
 import PageNavbar from "../../templates/components/common/PageNavbar";
 
-
-/**
- * Create an approvalRequest data
- *
- * @param {*} Approval approvalRequest's fullname
- * @param {*} Leave_request approvalRequest's subdivision
- * @param {*} Status_request approvalRequest's position
- * @param {*} Request_comment approvalRequest's status
- * @param {*} Actions available actions on the approvalRequest
- * @returns An object, contains the data of the approvalRequest
- */
 const createData = (HR_Approver, PM_Approver, Leave_request, Status, Comment, Actions) => {
     return { 
         "HR Approver": HR_Approver, 
@@ -67,11 +56,6 @@ const PMApprovalRequestPanel = ({ user }) => {
         setSeeing(true);
     };
 
-    /**
-     * Approval modify management
-     *
-     * @param {*} approvalRequest approvalRequest to edit
-     */
     const approveApprovalRequest = (approvalRequest) => {
         setDataModal(approvalRequest);
         setApproving(true);
@@ -82,12 +66,6 @@ const PMApprovalRequestPanel = ({ user }) => {
         setRejecting(true);
     };
 
-    /**
-     * Create the component that contains the actions on the users
-     *
-     * @param {*} user user to whom the actions will be performed
-     * @returns A component that contains the actions on the users
-     */
     const createActionsComponent = ({ approvalRequest }) => {
         return (
             <Grid container columns={3} spacing={1.5}>
@@ -127,7 +105,6 @@ const PMApprovalRequestPanel = ({ user }) => {
         );
     };
 
-    // Request from all system approvalRequests
     const getApprovalRequests = (page, pageSize) => {
         Axios.get(`http://localhost:3001/Lists/ApprovalRequest?page=${page}&pageSize=${pageSize}&emp=${user}`).then((response) => {
             const AllApprovalRequests = response.data;
@@ -147,7 +124,6 @@ const PMApprovalRequestPanel = ({ user }) => {
         });
     };
 
-    // Load all the users
     useEffect(() => {
         getApprovalRequests(page, pageSize);
     }, [page, pageSize]);

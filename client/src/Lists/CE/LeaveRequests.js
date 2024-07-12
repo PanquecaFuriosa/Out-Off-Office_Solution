@@ -20,18 +20,6 @@ import {
 import TableFilter from "../../templates/components/table/TableFilter";
 import PageNavbar from "../../templates/components/common/PageNavbar";
 
-/**
- * Create an leaveRequest data
- *
- * @param {*} Employee leaveRequest's fullname
- * @param {*} Absence_reason leaveRequest's subdivision
- * @param {*} Start_date leaveRequest's position
- * @param {*} End_date leaveRequest's status
- * @param {*} Comment leaveRequest's people partner
- * @param {*} Status leaveRequest's out of office balance
- * @param {*} Actions available actions on the leaveRequest
- * @returns An object, contains the data of the leaveRequest
- */
 const createData = (Employee, Absence_reason, Start_date, End_date, Comment, Status, Actions) => {
     return { 
         Employee, 
@@ -72,11 +60,7 @@ const CELeaveRequestPanel = ({ user }) => {
         setDataModal(null);
         setCreating(true);
     };
-    /**
-     * Employee modify management
-     *
-     * @param {*} leaveRequest leaveRequest to edit
-     */
+
     const modifyLeaveRequest = (leaveRequest) => {
         setDataModal(leaveRequest);
         setEditing(true);
@@ -92,13 +76,6 @@ const CELeaveRequestPanel = ({ user }) => {
         setSubmiting(true);
     };
 
-
-    /**
-     * Create the component that contains the actions on the users
-     *
-     * @param {*} user user to whom the actions will be performed
-     * @returns A component that contains the actions on the users
-     */
     const createActionsComponent = ({ leaveRequest }) => {
         return (
             <Grid container columns={3} spacing={1.5}>
@@ -152,7 +129,6 @@ const CELeaveRequestPanel = ({ user }) => {
         );
     };
 
-    // Request from all system leaveRequests
     const getLeaveRequests = (page, pageSize) => {
         Axios.get(`http://localhost:3001/Lists/LeaveRequest?page=${page}&pageSize=${pageSize}&emp=${user}`).then((response) => {
             const AllLeaveRequests = response.data;
@@ -173,7 +149,6 @@ const CELeaveRequestPanel = ({ user }) => {
         });
     };
 
-    // Load all the users
     useEffect(() => {
         getLeaveRequests(page, pageSize);
     }, [page, pageSize, user]);

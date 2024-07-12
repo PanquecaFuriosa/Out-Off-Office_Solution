@@ -1,6 +1,5 @@
 import React from "react";
 
-// Navigation
 import { useLocation, useNavigate } from "react-router-dom";
 import {
     Box,

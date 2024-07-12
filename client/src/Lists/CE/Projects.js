@@ -15,20 +15,6 @@ import {
 import TableFilter from "../../templates/components/table/TableFilter";
 import PageNavbar from "../../templates/components/common/PageNavbar";
 
-
-/**
- * Create an project data
- *
- * @param {*} Project_type project's name
- * @param {*} Start_date project's start date
- * @param {*} End_date project's end date
- * @param {*} Manager project's manager
- * @param {*} Comment A comment about the project
- * @param {*} Status project's status
- * @param {*} Suspended True if the project is deactivated, False otherwise
- * @param {*} Actions available actions on the project
- * @returns An object, contains the data of the project
- */
 const createData = (Project_type, Start_date, End_date, Manager, Comment, Status, Actions) => {
     return { 
         "Project type": Project_type, 
@@ -63,22 +49,11 @@ const CEProjectPanel = ({ user }) => {
     const [page, setPage] = useState(0);
     const [pageSize, setPageSize] = useState(5);
 
-    /**
-     * Project modify management
-     *
-     * @param {*} project project to edit
-     */
     const viewProject = (project) => {
         setDataModal(project);
         setSeeing(true);
     };
 
-    /**
-     * Create the component that contains the actions on the projects
-     *
-     * @param {*} user user to whom the actions will be performed
-     * @returns A component that contains the actions on the projects
-     */
     const createActionsComponent = ({ project }) => {
         return (
             <Grid container columns={1} spacing={1.5}>
@@ -96,7 +71,6 @@ const CEProjectPanel = ({ user }) => {
         );
     };
 
-    // Request from all system projects
     const getProjects = (page, pageSize) => {
         Axios.get(`http://localhost:3001/Lists/Project/CE?page=${page}&pageSize=${pageSize}&emp=${user}`).then((response) => {
             const AllProjects = response.data;
@@ -117,7 +91,6 @@ const CEProjectPanel = ({ user }) => {
         });
     };
 
-    // Load all the projects
     useEffect(() => {
         getProjects(page, pageSize);
     }, [page, pageSize]);

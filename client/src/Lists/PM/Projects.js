@@ -19,20 +19,6 @@ import {
 import TableFilter from "../../templates/components/table/TableFilter";
 import PageNavbar from "../../templates/components/common/PageNavbar";
 
-
-/**
- * Create an project data
- *
- * @param {*} Project_type project's name
- * @param {*} Start_date project's start date
- * @param {*} End_date project's end date
- * @param {*} Manager project's manager
- * @param {*} Comment A comment about the project
- * @param {*} Status project's status
- * @param {*} Suspended True if the project is deactivated, False otherwise
- * @param {*} Actions available actions on the project
- * @returns An object, contains the data of the project
- */
 const createData = (Project_type, Start_date, End_date, Manager, Comment, Status, Actions) => {
     return { 
         "Project type": Project_type, 
@@ -75,43 +61,22 @@ const PMProjectPanel = ({ user }) => {
         setCreating(true);
     };
 
-    /**
-     * Project modify management
-     *
-     * @param {*} project project to edit
-     */
     const viewProject = (project) => {
         setDataModal(project);
         setSeeing(true);
     };
 
-       /**
-     * Project modify management
-     *
-     * @param {*} project project to edit
-     */
-       const modifyProject = (project) => {
+
+    const modifyProject = (project) => {
         setDataModal(project);
         setEditing(true);
     };
 
-    /**
-     * Employee suspension management
-     *
-     * @param {*} ID employee's ID
-     * @param {*} suspended employeer's suspend state
-     */
-        const toggleLock = (ID, suspended) => {
-            setDataModal({ ID, suspended });
-            setSuspending(true);
-        };
+    const toggleLock = (ID, suspended) => {
+        setDataModal({ ID, suspended });
+        setSuspending(true);
+    };
 
-    /**
-     * Create the component that contains the actions on the projects
-     *
-     * @param {*} user user to whom the actions will be performed
-     * @returns A component that contains the actions on the projects
-     */
     const createActionsComponent = ({ project }) => {
         return (
             <Grid container columns={3} spacing={1.5}>
@@ -156,7 +121,6 @@ const PMProjectPanel = ({ user }) => {
         );
     };
 
-    // Request from all system projects
     const getProjects = (page, pageSize) => {
         Axios.get(`http://localhost:3001/Lists/Project?page=${page}&pageSize=${pageSize}&manager=${user}`).then((response) => {
             const AllProjects = response.data;
@@ -177,7 +141,6 @@ const PMProjectPanel = ({ user }) => {
         });
     };
 
-    // Load all the projects
     useEffect(() => {
         getProjects(page, pageSize);
     }, [page, pageSize]);

@@ -22,15 +22,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import dayjs from "dayjs";
 
-/**
- * Create the user creation modal
- *
- * @param {*} open Indicates if the modal is open
- * @param {*} setOpen Open status setter function.
- * @param {*} create Indicates if the modal must create a new user or edit it
- * @param {*} data User data in case the modal i used to edit
- * @returns A dialog component with the form to create a user
- */
 const ModalRequestCreate = ({
     open,
     setOpen,
@@ -38,7 +29,6 @@ const ModalRequestCreate = ({
     employee,
     data,
 }) => {
-    //form fields states
     const [absenceReason, setAbsenceReason] = useState(create ? "" : data.ABSENCE_REASON);
     const [startDate, setStartDate] = useState(
         create ? null : dayjs(data.INITIAL_DATE, "DD-MM-YYYY")
@@ -215,14 +205,6 @@ const ModalRequestCreate = ({
     );
 };
 
-/**
- * Create the user deletion modal
- *
- * @param {*} open Indicates if the modal is open
- * @param {*} setOpen Open status setter function.
- * @param {*} data Data of the user to delete
- * @returns A dialog component with the form to delete a user
- */
 const ModalRequestSubmit = ({ open, setOpen, data }) => {
     const handleSubmit = () => {
         Axios.put("http://localhost:3001/Lists/LeaveRequest/update_request", {
@@ -266,14 +248,6 @@ const ModalRequestSubmit = ({ open, setOpen, data }) => {
     );
 };
 
-/**
- * Create the user deletion modal
- *
- * @param {*} open Indicates if the modal is open
- * @param {*} setOpen Open status setter function.
- * @param {*} data Data of the user to delete
- * @returns A dialog component with the form to delete a user
- */
 const ModalRequestCancel = ({ open, setOpen, data }) => {
     const handleCancel = () => {
         Axios.put("http://localhost:3001/Lists/LeaveRequest/update_request", {

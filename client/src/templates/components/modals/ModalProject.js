@@ -22,15 +22,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 import dayjs from "dayjs";
 
-/**
- * Create the user creation modal
- *
- * @param {*} open Indicates if the modal is open
- * @param {*} setOpen Open status setter function.
- * @param {*} create Indicates if the modal must create a new user or edit it
- * @param {*} data Project data in case the modal i used to edit
- * @returns A dialog component with the form to create a user
- */
 const ModalProjectCreate = ({
     open,
     setOpen,
@@ -38,7 +29,6 @@ const ModalProjectCreate = ({
     edit,
     data,
 }) => {
-    //form fields states
     const [type, setType] = useState(create ? "" : data.PROJECT_TYPE);
     const [startDate, setStartDate] = useState(
         create ? null : dayjs(data.INITIAL_DATE, "DD-MM-YYYY")
