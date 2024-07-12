@@ -9,8 +9,8 @@ app.use(express.json());
 const db = mysql.createConnection({
     host:"localhost",
     user:"root",
-    password:"Pinwina.0610",
-    database:"db_office"
+    password:"",
+    database:""
 });
 
 // POST methods
