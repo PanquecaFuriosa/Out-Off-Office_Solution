@@ -12,7 +12,7 @@ After that, go to the server folder and run again:
 
 With that step, you will be have all the dependencies installed.
 
-Make sure you have MySQL installed and it's server is running. Then create a database.
+Make sure you have MySQL installed and its server is running. Then create a database.
 Set the conection on the file index.js, in the server folder.
 ```
 const db = mysql.createConnection({
